@@ -1,6 +1,6 @@
 import {Routes,Route } from "react-router-dom";
 import {HomePage, OffersPage, ProfilePage, SignInPage, SignupPage,ForgotPasswordPage} from "./pages";
-import Header from './components/Header';
+import Header from './components/Header/Header';
 
 function App() {
 

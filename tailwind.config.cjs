@@ -11,8 +11,10 @@ module.exports = {
     extend: {
       colors:{
         secondary:'var(--secondary)',
+        tertiary:'var(--tertiary)',
+        color1:'var(--bg-color-1)',
       }
     },
   },
-  plugins: [],
+  plugins: [  require('@tailwindcss/forms')],
 }

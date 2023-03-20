@@ -1,5 +1,5 @@
 import { Link, NavLink,useLocation } from 'react-router-dom';
-import Logo1 from '../assets/icon1.png';
+import Logo1 from '../../assets/icon1.png';
 
 
 function Header() {
@@ -15,7 +15,7 @@ function Header() {
         <div>
           <Link to='/' className="flex items-center">
             <img src={Logo1} alt="logo" className='w-[55px] h-[55px] lg:h-[75px] lg:w-[75px] cursor-pointer'/>
-            <span className='font-extrabold text-secondary text-[17px] -ml-[20px]'>Chiki_Housing</span>
+            <span className='font-extrabold text-secondary text-[17px] -ml-[20px]'>Chiki Homes</span>
           </Link>
         </div>
         <div className="hidden md:block">

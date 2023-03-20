@@ -5,5 +5,17 @@
 @tailwind utilities;
 
 :root{
-    --secondary: #ff7f50
+    --secondary: #ff7f50;
+    --tertiary: #b6fcab;
+    --bg-color-1: #e4fde8;
 }
+
+body{
+    @apply bg-color1
+}
+/* #fff3e6 */
+/* #dabcd3 */
+/* #d9d1c3 */
+/* #e5e6cf */
+/* #e4fde8 */
+
