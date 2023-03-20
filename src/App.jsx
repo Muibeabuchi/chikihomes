@@ -1,16 +1,20 @@
 import {Routes,Route } from "react-router-dom";
 import {HomePage, OffersPage, ProfilePage, SignInPage, SignupPage,ForgotPasswordPage} from "./pages";
+import Header from './components/Header';
 
 function App() {
 
-  return <Routes>
-    <Route path='/' element={<HomePage/>}/>
-    <Route path='/profile' element={<ProfilePage/>}/>
-    <Route path='/sign-in' element={<SignInPage/>}/>
-    <Route path='/sign-up' element={<SignupPage/>}/>
-    <Route path='/forgot-password' element={<ForgotPasswordPage/>}/>
-    <Route path='/offers' element={<OffersPage/>}/>
-  </Routes>
+  return <>
+    <Header />
+    <Routes>
+      <Route path='/' element={<HomePage/>}/>
+      <Route path='/profile' element={<ProfilePage/>}/>
+      <Route path='/sign-in' element={<SignInPage/>}/>
+      <Route path='/sign-up' element={<SignupPage/>}/>
+      <Route path='/forgot-password' element={<ForgotPasswordPage/>}/>
+      <Route path='/offers' element={<OffersPage/>}/>
+    </Routes>
+  </>
   
 }
 
