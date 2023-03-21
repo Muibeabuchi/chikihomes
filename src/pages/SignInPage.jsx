@@ -35,7 +35,7 @@ function SignInPage() {
                 <span className='absolute right-3 top-[22%] text-xl cursor-pointer' onClick={()=> setShowpassword(prev=>!prev)}><i className="ri-eye-fill"></i></span>
               }
             </div>
-            <div className=" flex flex-col text-center gap-y-3 md:flex-row w-full md:justify-between md:items-center md:whitespace-nowrap">
+            <div className=" flex flex-col text-center gap-y-3 xl:flex-row w-full xl:justify-between md:items-center md:whitespace-nowrap">
               <p className='text-[.8rem] md:text-base'>Don't have an account?<span className="text-secondary cursor-pointer ml-1 transition ease-in-out"><Link to='/sign-up'>Register</Link></span></p>
               <Link to='/forgot-password' className='md:text-base text-blue-600 cursor-pointer transition ease-in-out text-[.8rem]'>Forgot Password?</Link>
             </div>

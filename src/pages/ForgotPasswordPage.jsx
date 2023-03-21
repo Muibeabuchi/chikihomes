@@ -21,7 +21,7 @@ function SignupPage() {
         <div className='w-full md:w-[67%] lg:w-[40%]'>
           <form  className='space-y-4'>
             <input type="email" name='email' required value={email}  onChange={handleInput} className='w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out' placeholder='Email Adress'/>
-            <div className=" flex flex-col text-center gap-y-3 md:flex-row w-full md:justify-between md:items-center md:whitespace-nowrap">
+            <div className=" flex flex-col text-center gap-y-3 xl:flex-row w-full xl:justify-between md:items-center md:whitespace-nowrap">
               <p className='text-[.8rem] md:text-base'>Don't have an account?<span className="text-secondary cursor-pointer ml-1 transition ease-in-out"><Link to='/sign-up'>Register</Link></span></p>
               <Link to='/sign-in' className='md:text-base text-blue-600 cursor-pointer transition ease-in-out text-[.8rem]'>Sign in instead?</Link>
             </div>
