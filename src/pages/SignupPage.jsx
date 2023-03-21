@@ -58,10 +58,12 @@ function SignupPage() {
         })
       }
       console.log(user);
-      toast.success('Sign up was successful')
+      toast.success('Sign up was successful',{
+        autoClose:5000
+      })
       navigate('/');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error('Something went wrong with the registration')
     }
   }
