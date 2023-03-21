@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import loginImage from '../assets/ISTOCK1.jpg';
+import loginImage from '../assets/signupimage.jpg';
 import GoogleButton from '../components/UI/GoogleButton';
 // import {auth} from '../firebase.config'; 
 import { createUserWithEmailAndPassword,updateProfile } from 'firebase/auth';

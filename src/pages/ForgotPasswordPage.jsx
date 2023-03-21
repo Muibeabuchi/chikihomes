@@ -1,7 +1,10 @@
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import loginImage from '../assets/ISTOCK3.jpg';
+import { toast } from 'react-toastify';
+import loginImage from '../assets/forgotpasswordimage.jpg';
 import GoogleButton from '../components/UI/GoogleButton';
+import { auth } from '../firebase.config';
 
 
 function SignupPage() {
@@ -9,11 +12,22 @@ function SignupPage() {
   
   function handleInput(e){
     setEmail(e.target.value) 
-    console.log(email);
+  }
+  async function handleResetPassword(e){
+    e.preventDefault();
+    try {
+      await sendPasswordResetEmail(auth,email);
+      setEmail('');
+      toast.success('reset password sent successfully')
+    } catch (error) {
+      // console.log(error.message);
+      toast.error('Could not send reset password')
+    }
+
   }
   return (
     <section className=''>
-      <h1 className="text-3xl text-center mt-6 font-bold">Forgot Password</h1>
+      <h1 className="text-3xl text-center mt-6 font-bold text-secondary">Forgot Password?</h1>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto gap-x-6">
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6 ">
           <img src={loginImage} alt="login image" className='w-full rounded-2xl object-cover'/>

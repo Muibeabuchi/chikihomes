@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import loginImage from '../assets/ISTOCK2.jpg';
+import loginImage from '../assets/loginimage.jpg';
 import GoogleButton from '../components/UI/GoogleButton';
 import { auth } from '../firebase.config';
 
@@ -46,7 +46,7 @@ function SignInPage() {
   }
   return (
     <section className=''>
-      <h1 className="text-3xl text-center mt-6 font-bold">Sign In</h1>
+      <h1 className="text-3xl text-center text-secondary mt-6 font-bold">Sign In</h1>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto gap-x-6">
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6 ">
           <img src={loginImage} alt="login image" className='w-full rounded-2xl object-cover'/>
