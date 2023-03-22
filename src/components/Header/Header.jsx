@@ -11,7 +11,7 @@ function Header() {
   }
 
   return (
-    <div className=' bg-[white] border-b shadow-sm sticky top-0 z-[99]'>
+    <div className=' bg-[white] border-b shadow-sm sticky top-0 z-[10]'>
       <header className='flex justify-between items-center px-3 max-w-6xl mx-auto'>
         <div>
           <Link to='/' className="flex items-center">

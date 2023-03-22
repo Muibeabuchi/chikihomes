@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import Spinner from "../components/UI/Spinner";
 import useAuth from "../hooks/useAuth";
 
 function ProtectedRoute({children}) {
@@ -6,7 +7,7 @@ function ProtectedRoute({children}) {
     // const loggedIn = true;
 
     if(checkingStatus){
-        return <h3>Loading .....</h3>
+        return <Spinner />
     }
   return userData ? children : <Navigate to='/sign-in' /> 
 }
