@@ -39,7 +39,7 @@ function useAuth() {
             // console.log(userData);
             // // setCheckingStatus(false);
         });
-        // return ()=> unsuscribe();
+        return ()=> unsuscribe();
     },[])
 
 

@@ -1,5 +1,6 @@
 import { Link, NavLink,useLocation } from 'react-router-dom';
 import Logo1 from '../../assets/icon1.png';
+import { auth } from '../../firebase.config';
 
 
 function Header() {
@@ -22,7 +23,11 @@ function Header() {
           <ul className='flex space-x-5 lg:space-x-10'>
             <li className={`text-gray-400 border-b-[3px] border-b-transparent py-3 font-semibold ${pathMatchRoute('/') && 'text-black !border-b-secondary' }`}><NavLink to='/' className={`cursor-pointer flex items-center `}><i className="lg:text-[1.3rem] text-secondary ri-home-2-line"></i>Home</NavLink></li>
             <li className={`text-gray-400 border-b-[3px] border-b-transparent py-3 ${pathMatchRoute('/offers') && 'text-black !border-b-secondary' } font-semibold`}><NavLink to='/offers' className={`flex items-center cursor-pointer`}><i className="lg:text-[1.3rem] text-secondary ri-hand-coin-line"></i>Offers</NavLink></li>
+            {
+              !auth?.currentUser ?
             <li className={`text-gray-400 border-b-[3px] border-b-transparent py-3 ${pathMatchRoute('/sign-in') && 'text-black !border-b-secondary' } font-semibold`}><NavLink to='/sign-in' className={`flex items-center cursor-pointer`}><i className="lg:text-[1.3rem] text-secondary ri-login-box-line"></i>Sign In</NavLink></li>
+            :<li className={`text-gray-400 border-b-[3px] border-b-transparent py-3 ${pathMatchRoute('/profile') && 'text-black !border-b-secondary' } font-semibold`}><NavLink to='/profile' className={`flex items-center cursor-pointer`}><i className="lg:text-[1.3rem] text-secondary ri-login-box-line"></i>Profile</NavLink></li>
+            }
           </ul>
         </div>
         <div className="md:hidden">
