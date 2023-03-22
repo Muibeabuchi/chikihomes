@@ -4,6 +4,7 @@ import ForgotPasswordPage from "./ForgotPasswordPage";
 import OffersPage from "./OffersPage";
 import SignupPage from "./SignupPage";
 import SignInPage from "./SignInPage";
+import CreateListing from './CreateListing';
 
 
 export {
@@ -13,4 +14,5 @@ export {
     OffersPage,
     SignInPage,
     SignupPage,
+    CreateListing
 }

@@ -1,10 +1,11 @@
 import { signOut, updateProfile } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth, db } from '../firebase.config';
 import useAuth from '../hooks/useAuth';
+import {FcHome} from 'react-icons/fc';
 
 function ProfilePage() {
 
@@ -86,7 +87,9 @@ function ProfilePage() {
             }</span></p>
             <p onClick={handleSignOut} className='text-blue-600 hover:text-blue-800 cursor-pointer transition ease-in-out duration-200'>Sign out</p>
           </div>
+
         </div>
+          <button type="button" className=' bg-secondary opacity-80  text-white uppercase text-sm font-medium px-7 py-3 rounded shadow-md hover:shadow-lg hover:opacity-100 transition duration-200 ease-in-out'><Link to='/create-listing' className='flex items-center gap-2'> <FcHome className='text-xl lg:text-3xl '/> Sell or Rent your home </Link></button>
       </section>    
     </>
   )

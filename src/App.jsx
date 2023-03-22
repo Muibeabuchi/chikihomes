@@ -1,5 +1,5 @@
 import {Routes,Route } from "react-router-dom";
-import {HomePage, OffersPage, ProfilePage, SignInPage, SignupPage,ForgotPasswordPage} from "./pages";
+import {CreateListing, HomePage, OffersPage, ProfilePage, SignInPage, SignupPage,ForgotPasswordPage} from "./pages";
 import ProtectedRoute from "./routers/ProtectedRoute";
 import Header from './components/Header/Header';
 
@@ -15,8 +15,7 @@ function App() {
          </ProtectedRoute> 
       } 
       />
-        {/* <Route index  element={<ProfilePage />} /> */}
-      {/* </Route> */}
+      <Route path='/create-listing' element={<CreateListing />} />
       <Route path='/sign-in' element={<SignInPage/>}/>
       <Route path='/sign-up' element={<SignupPage/>}/>
       <Route path='/forgot-password' element={<ForgotPasswordPage/>}/>
