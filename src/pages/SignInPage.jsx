@@ -32,7 +32,7 @@ function SignInPage() {
       const user = userCredentials.user;
 
       if(user){
-        navigate('/')
+        navigate('/profile')
       }
     } catch (error) {
       const errorMessage = error.message
