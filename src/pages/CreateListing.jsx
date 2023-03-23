@@ -4,7 +4,7 @@ import Spinner from '../components/UI/Spinner';
 import {auth, db, storage} from '../firebase.config';
 import {v4 as uuidv4} from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -119,6 +119,7 @@ function CreateListing() {
       ...formData,
       imgUrls,
       geolocation,
+      userRef: auth?.currentUser.uid,
       timestamp: serverTimestamp(),
     }
 

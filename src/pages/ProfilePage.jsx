@@ -1,11 +1,12 @@
 import { signOut, updateProfile } from 'firebase/auth';
-import { doc, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, orderBy, query, updateDoc, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth, db } from '../firebase.config';
 import useAuth from '../hooks/useAuth';
 import {FcHome} from 'react-icons/fc';
+import ListingItem from '../components/UI/ListingItem';
 
 function ProfilePage() {
 
@@ -14,6 +15,8 @@ function ProfilePage() {
   const [name,setName] = useState('');
   const navigate = useNavigate();
   const [changeDetail,setChangeDetail] = useState(false);
+  const [listings,setListings] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
     setEmail(userData?.email)
@@ -69,6 +72,33 @@ function ProfilePage() {
   // });
 
   // const {email,name} = formData;
+
+  useEffect(()=>{
+
+    async function fetchUserListing (){
+
+      try {
+        const listingRef = collection(db,'listings');
+        const q = query(listingRef,where('userRef' ,'==',auth.currentUser.uid ),orderBy('timestamp','desc'));
+        const querySnap = await getDocs(q);
+        let listings = [];
+        querySnap.forEach((doc)=>{
+          return listings.push({
+            id:doc.id,
+            data:doc.data(),
+          })
+        })
+        setListings(listings);
+        setLoading(false);
+          
+      } catch (error) {
+        console.log(error.message);        
+        setLoading(false);
+      }
+    }
+
+    fetchUserListing();
+  },[auth?.currentUser.uid])
   return (
     <>
       <section className='max-w-6xl mx-auto flex flex-col items-center justify-between'>
@@ -91,6 +121,23 @@ function ProfilePage() {
         </div>
           <button type="button" className=' bg-secondary opacity-80  text-white uppercase text-sm font-medium px-7 py-3 rounded shadow-md hover:shadow-lg hover:opacity-100 transition duration-200 ease-in-out'><Link to='/create-listing' className='flex items-center gap-2'> <FcHome className='text-xl lg:text-3xl '/> Sell or Rent your home </Link></button>
       </section>    
+
+      <div className="max-w-6xl mt-6 px-3 mx-auto">
+        {    
+          !loading && listings?.length > 0 && (
+            <>
+              <h2 className='text-2xl text-center font-semibold  '>My Listings</h2>
+              <ul>
+                {
+                  listings.map((item)=>{
+                    return <ListingItem key={item.id} {...item} />
+                  })
+                };
+              </ul>
+            </>
+          )
+        }
+      </div>
     </>
   )
 }
