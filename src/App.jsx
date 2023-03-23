@@ -15,7 +15,11 @@ function App() {
          </ProtectedRoute> 
       } 
       />
-      <Route path='/create-listing' element={<CreateListing />} />
+      <Route path='/create-listing' element={
+        <ProtectedRoute>
+          <CreateListing />
+        </ProtectedRoute>
+        } />
       <Route path='/sign-in' element={<SignInPage/>}/>
       <Route path='/sign-up' element={<SignupPage/>}/>
       <Route path='/forgot-password' element={<ForgotPasswordPage/>}/>

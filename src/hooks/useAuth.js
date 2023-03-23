@@ -15,7 +15,7 @@ function useAuth() {
       const unsuscribe =  onAuthStateChanged(auth,data =>{
             console.log('this is the' + data);
             // setUserData(data.uid)
-            if(data?.uid){
+            if(data){
                 setUserData(data)
                 setCheckingStatus(false)
             }else{
