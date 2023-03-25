@@ -1,23 +1,27 @@
 import React from 'react'
 // import Moment from ' react-moment';
 import { Link } from 'react-router-dom'
-import {MdLocationPin} from 'react-icons/md';
+import {MdLocationPin,MdEdit} from 'react-icons/md';
+import {FaTrash} from 'react-icons/fa';
+import useAuth from '../../hooks/useAuth';
 
-function ListingItem({id,data}) {
+function ListingItem({id,data,onDelete,onEdit}) {
+
+  const {userData} = useAuth();
 
   // const time = Date.parse('23 mar 2023 10:41:19')
   // console.log(time);
-  console.log(data);
+  // console.log(data);
   const {category,timestamp,address,imgUrls,regularprice,discountedprice,bathrooms,bedrooms,name,type,offer} = data
-  console.log(timestamp.seconds*1000);
-  const mydate = new Date();
-  console.log(mydate);
-  const mycurrentdate = Date.now()
-  console.log(mycurrentdate);
+  // console.log(timestamp.seconds*1000);
+  // const mydate = new Date();
+  // console.log(mydate);
+  // const mycurrentdate = Date.now()
+  // console.log(mycurrentdate);
 
   return (
-    <Link to={`/category/${category}/${id}`}>
-    <li className='bg-white flex flex-col  justify-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow ease-in-out duration '>
+    <li className='relative'>
+      <Link to={`/category/${category}/${id}`} className=' bg-white flex flex-col  justify-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow ease-in-out duration '>
         <img src={imgUrls[0]} alt="property card image" className='h-[170px] object-cover hover:scale-105 transition duration-200 ease-in ' loading='lazy'/>
         {/* <Moment >{}</Moment> */}
         <div className="w-full p-[10px] ">
@@ -34,8 +38,19 @@ function ListingItem({id,data}) {
             {/* </div> */}
           </div>
         </div>
-    </li>
       </Link>
+      {
+          id == userData?.uid && (
+            <FaTrash className='absolute bottom-2 right-2 h-[14px] cursor-pointer text-red-500' onClick={()=>onDelete(id)}/>
+          )
+        }
+        {
+          id == userData?.uid &&  (
+            <MdEdit className='absolute bottom-2 right-8  h-4 cursor-pointer ' onClick={()=>onEdit(id)}/>
+          )
+        }
+
+    </li>
   )
 }
 

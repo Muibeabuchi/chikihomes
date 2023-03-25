@@ -1,5 +1,5 @@
 import { signOut, updateProfile } from 'firebase/auth';
-import { collection, doc, getDocs, orderBy, query, updateDoc, where } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -99,6 +99,30 @@ function ProfilePage() {
 
     fetchUserListing();
   },[auth?.currentUser.uid])
+
+  async function onDelete(id){
+    console.log('deleted');
+    if(window.confirm('are you sure you want to delete?')){
+
+      try {
+        await deleteDoc(doc(db,'listings',id))
+        const updatedListings = listings.filter((item)=>{
+          return item.id !== id
+        })
+        setListings(updatedListings)
+        toast.success('Listing deleted');
+      } catch (error) {
+        console.log(error.message);
+      }
+
+    }
+  }
+
+  function onEdit(id){
+    console.log('edited')
+    navigate(`/edit/${id}`);    
+
+  }
   return (
     <>
       <section className='max-w-6xl mx-auto flex flex-col items-center justify-between'>
@@ -122,7 +146,8 @@ function ProfilePage() {
           <button type="button" className=' bg-secondary opacity-80  text-white uppercase text-sm font-medium px-7 py-3 rounded shadow-md hover:shadow-lg hover:opacity-100 transition duration-200 ease-in-out'><Link to='/create-listing' className='flex items-center gap-2'> <FcHome className='text-xl lg:text-3xl '/> Sell or Rent your home </Link></button>
       </section>    
 
-      <div className="max-w-6xl mt-6 px-3 mx-auto">
+      <div className="max-w-6xl mt-6 px-3 mx-auto mb-6">
+
         {    
           !loading && listings?.length > 0 && (
             <>
@@ -130,12 +155,15 @@ function ProfilePage() {
               <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6 sm:gap-3'>
                 {
                   listings.map((item)=>{
-                    return <ListingItem key={item.id} {...item} />
+                    return <ListingItem key={item.id} {...item} onDelete={onDelete} onEdit={onEdit} />
                   })
                 };
               </ul>
             </>
           )
+        }
+        {
+          !loading && listings.length <= 0 &&  <p className='text-center text-gray-500 text-2xl'>No Listing Found.</p> 
         }
       </div>
     </>
