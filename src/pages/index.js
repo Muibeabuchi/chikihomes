@@ -6,6 +6,7 @@ import SignupPage from "./SignupPage";
 import SignInPage from "./SignInPage";
 import CreateListing from './CreateListing';
 import EditListing from './EditListing';
+import Listing from './Listing';
 
 
 export {
@@ -16,5 +17,6 @@ export {
     SignInPage,
     SignupPage,
     CreateListing,
-    EditListing
+    EditListing,
+    Listing,
 }
