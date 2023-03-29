@@ -12,7 +12,7 @@ function ListingItem({id,data,onDelete,onEdit}) {
   // const time = Date.parse('23 mar 2023 10:41:19')
   // console.log(time);
   // console.log(data);
-  const {category,timestamp,address,imgUrls,regularprice,discountedprice,bathrooms,bedrooms,name,type,offer} = data
+  const {timestamp,address,imgUrls,regularprice,discountedprice,bathrooms,bedrooms,name,type,offer,userRef} = data
   // console.log(timestamp.seconds*1000);
   // const mydate = new Date();
   // console.log(mydate);
@@ -21,7 +21,7 @@ function ListingItem({id,data,onDelete,onEdit}) {
 
   return (
     <li className='relative'>
-      <Link to={`/category/${category}/${id}`} className=' bg-white flex flex-col  justify-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow ease-in-out duration '>
+      <Link to={`/category/${type}/${id}`} className=' bg-white flex flex-col  justify-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow ease-in-out duration '>
         <img src={imgUrls[0]} alt="property card image" className='h-[170px] object-cover hover:scale-105 transition duration-200 ease-in ' loading='lazy'/>
         {/* <Moment >{}</Moment> */}
         <div className="w-full p-[10px] ">
@@ -40,12 +40,12 @@ function ListingItem({id,data,onDelete,onEdit}) {
         </div>
       </Link>
       {
-          id == userData?.uid && (
+          userRef == userData?.uid && (
             <FaTrash className='absolute bottom-2 right-2 h-[14px] cursor-pointer text-red-500' onClick={()=>onDelete(id)}/>
           )
         }
         {
-          id == userData?.uid &&  (
+          userRef == userData?.uid &&  (
             <MdEdit className='absolute bottom-2 right-8  h-4 cursor-pointer ' onClick={()=>onEdit(id)}/>
           )
         }
@@ -54,4 +54,4 @@ function ListingItem({id,data,onDelete,onEdit}) {
   )
 }
 
-export default ListingItem
+export default ListingItem;

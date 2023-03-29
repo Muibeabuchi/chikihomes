@@ -5,6 +5,7 @@ import OffersPage from "./OffersPage";
 import SignupPage from "./SignupPage";
 import SignInPage from "./SignInPage";
 import CreateListing from './CreateListing';
+import EditListing from './EditListing';
 
 
 export {
@@ -14,5 +15,6 @@ export {
     OffersPage,
     SignInPage,
     SignupPage,
-    CreateListing
+    CreateListing,
+    EditListing
 }

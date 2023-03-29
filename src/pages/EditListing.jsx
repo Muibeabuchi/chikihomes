@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { toast } from 'react-toastify';
 import Spinner from '../components/UI/Spinner';
 import {auth, db, storage} from '../firebase.config';
 import {v4 as uuidv4} from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { addDoc, collection, doc, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { useNavigate,useParams } from 'react-router-dom';
 
 
-function CreateListing() {
+function EditListing() {
   const navigate = useNavigate();
+  const {id} = useParams();
   // const [geolocationEnabled,setGeoLocationEnabled] = useState(false);
   const [isLoading,setIsLoading] = useState(false);
+  const [listing,setListing] = useState(null);
   const [formData,setFormData] = useState({
     type:'rent',
     name:'',
@@ -127,13 +129,52 @@ function CreateListing() {
     delete formDataCopy.latitude;
     delete formDataCopy.longitude;
     !formDataCopy.offer && delete formDataCopy.discountedprice
-    const colRef = collection(db,'listings');
-    const docRef = await addDoc(colRef,formDataCopy);
+    const docRef = doc(db,'listings',id);
+
+    try {
+      const docSnap = await updateDoc(docRef,formDataCopy);
+      
+    } catch (error) {
+      console.log(error.message);
+    }
     console.log(docRef);
     setIsLoading(false);
     toast.success('Listing Edited')
     navigate(`/categories/${formDataCopy.type}/${docRef.id}`)
   }
+
+  useEffect(()=>{
+    setIsLoading(true)
+    async function fetchListing(){
+      const docRef = doc(db,'listings',id);
+      const docSnap = await getDoc(docRef)
+      if(docSnap.exists()){
+        setListing(docSnap.data());
+        setFormData({
+          ...docSnap.data(),
+          latitude: docSnap.data()?.geolocation.lat,
+          longitude: docSnap.data()?.geolocation.lng,
+          images:docSnap.data()?.imageUrl,
+        });
+        setIsLoading(false)
+      }else{
+        navigate('/');
+        toast.error('Listing does not exist')
+        setIsLoading(false)
+      }
+    }
+    fetchListing();
+    console.log(listing);
+  },[])
+
+  useEffect(()=>{
+    if(listing && listing.userRef !== auth.currentUser.uid){
+      navigate('/');
+      toast.error('You are not allowed to edit this page');
+    }
+  },[listing?.userRef]);
+
+  console.log(listing?.userRef,auth?.currentUser?.uid);
 
   if(isLoading){
     return <Spinner />
@@ -141,7 +182,7 @@ function CreateListing() {
   
   return (
     <main className='max-w-md mx-auto p-2'>
-      <h1 className='text-3xl text-center mt-6 font-bold '>Create a Listing</h1>
+      <h1 className='text-3xl text-center mt-6 font-bold '>Edit Listing</h1>
 
       <form id='create-list' onSubmit={onSubmit}>
         <p className='text-lg font-semibold mt-6 text-left'>Sell/Rent</p>
@@ -171,7 +212,7 @@ function CreateListing() {
         <div className="flex items-center space-x-4">
           <button type='button' id='parking' value={true} onClick={onChange} className={`px-7 py-3 font-medium text-sm uppercase  shadow-md hover:shadow-lg rounded focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${!formData.parking ? 'bg-white text-black' : 'bg-slate-600 text-white'  }`}>
             Yes
-          </button>
+          </button> 
           <button type='button' id='parking' value={false} onClick={onChange} className={`px-7 py-3 font-medium text-sm uppercase  shadow-md hover:shadow-lg rounded focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${formData.parking ? 'bg-white text-black' : 'bg-slate-600 text-white'  }`}>
             No
           </button>
@@ -258,10 +299,10 @@ function CreateListing() {
             </div>
         </div>
 
-        <button type='submit' form='create-list'  className='w-full bg-blue-600 rounded uppercase font-medium text-sm shadow-sm hover:shadow-lg text-white py-2 px-5 mb-6 focus:bg-blue-700 focus:shadow-lg active:shadow-lg active:bg-blue-800 transition duration-150 ease-in-out cursor-pointer first-letter hover:bg-blue-700'> Create Listing</button>
+        <button type='submit' form='create-list'  className='w-full bg-blue-600 rounded uppercase font-medium text-sm shadow-sm hover:shadow-lg text-white py-2 px-5 mb-6 focus:bg-blue-700 focus:shadow-lg active:shadow-lg active:bg-blue-800 transition duration-150 ease-in-out cursor-pointer first-letter hover:bg-blue-700'> Edit Listing</button>
       </form>
     </main>
   )
 }
 
-export default CreateListing;
+export default EditListing;

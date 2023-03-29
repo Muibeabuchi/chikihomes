@@ -120,7 +120,7 @@ function ProfilePage() {
 
   function onEdit(id){
     console.log('edited')
-    navigate(`/edit/${id}`);    
+    navigate(`/edit-listing/${id}`);    
 
   }
   return (
