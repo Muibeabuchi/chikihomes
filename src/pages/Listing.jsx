@@ -6,7 +6,7 @@ import Spinner from '../components/UI/Spinner';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import {FaShare} from 'react-icons/fa';
+import {FaBed,FaChair , FaParking,  FaBath, FaShare,FaMapMarkerAlt} from 'react-icons/fa';
 
 
 // import { useRef, useEffect } from 'react';
@@ -86,6 +86,46 @@ function Listing() {
         {shareLinkCopied &&
             <p className='fixed top-[23%] right-[5%] font-semibold border-2 border-gray-400 rounded-md bg-white z-[10] p-2  '>Link Copied</p>
         }
+        <div className="flex flex-col justify-center  items-center max-w-xl m-4 mt-8 rounded-lg lg:space-x-5 space-y-5 md:space-y-0 bg-white shadow-lg p-4 lg:mx-auto">
+            <div className=" w-full ">
+                <p className=" text-sm lg:text-2xl font-bold mb-3 text-blue-900">{listing.name} - ${''} {listing.offer? listing?.discountedprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g,','): listing?.regularprice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+                {
+                    listing?.type === 'rent' ? ' /Month' : ''
+                }</p>
+                <p className='flex items-center gap-1 mb-3 font-semibold  '><FaMapMarkerAlt className='text-secondary'/> {listing?.address}</p>
+                <div className='flex mb-3 items-center justify-start space-x-4 w-[75%]'>
+                <p className='bg-red-800 text-center w-full max-w-[200px] rounded-md p-1 text-white font-semibold shadow-md' >{listing?.type == 'rent' ? 'Rent' : 'Sale'}</p>
+                {
+                    listing?.offer && (
+                        <p className='w-full max-w-[200px] bg-green-800 rounded-md p-1 text-white text-center font-semibold'>${+listing?.regularprice - +listing?.discountedprice} discount</p>
+                        )
+                }
+                </div>
+                <p className='mb-3'> <span className='font-semibold '>Description - </span> {listing?.description}</p>
+                <ul className='text-sm    font-semibold flex items-center justify-around'>
+                    <li className='flex items-center'>
+                        <FaBed className='text-lg whitespace-nowrap mr-1'/>
+                        {
+                        +listing?.bedrooms > 1 ? `${listing?.bedrooms} Beds` : '1 Bed'
+                        }</li>
+                    <li className='flex items-center'>
+                        <FaBath className='text-lg whitespace-nowrap mr-1'/>
+                        {
+                        +listing?.bathrooms >1 ? `${listing?.bathrooms} Baths` : '1 Baths'
+                        }</li>
+                    <li className='flex items-center'>
+                        <FaParking className='text-lg whitespace-nowrap mr-1'/>
+                        { listing?.parking ? 'Parking' : 'No Parking'
+                        }</li>
+                    <li className='flex items-center'>
+                        <FaChair className='text-lg whitespace-nowrap mr-1'/>
+                        { listing?.furnished ? 'Furnished' :'Not Furnished'
+                        }</li>
+                </ul>
+
+            </div>
+            {/* <div className="bg-pink-400 w-full h-[200px]"></div> */}
+        </div>
      </main>
 
   )
