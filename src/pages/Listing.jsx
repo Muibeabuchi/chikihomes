@@ -1,12 +1,13 @@
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { db } from '../firebase.config';
+import { auth, db } from '../firebase.config';
 import { useParams } from 'react-router-dom';
 import Spinner from '../components/UI/Spinner';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import {FaBed,FaChair , FaParking,  FaBath, FaShare,FaMapMarkerAlt} from 'react-icons/fa';
+import ContactForm from '../components/ContactForm/ContactForm';
 
 
 // import { useRef, useEffect } from 'react';
@@ -19,7 +20,7 @@ import {FaBed,FaChair , FaParking,  FaBath, FaShare,FaMapMarkerAlt} from 'react-
 
 function Listing() {
 
-
+    const [contactLandlord,setContactLandlord] = useState(false);
     const [loading,setLoading ] = useState(true);
     const [listing, setListing ] = useState([]);
     const [shareLinkCopied,setShareLinkCopied] = useState(false);
@@ -102,7 +103,7 @@ function Listing() {
                 }
                 </div>
                 <p className='mb-3'> <span className='font-semibold '>Description - </span> {listing?.description}</p>
-                <ul className='text-sm    font-semibold flex items-center justify-around'>
+                <ul className='text-sm mb-3 font-semibold flex items-center justify-around'>
                     <li className='flex items-center'>
                         <FaBed className='text-lg whitespace-nowrap mr-1'/>
                         {
@@ -122,7 +123,17 @@ function Listing() {
                         { listing?.furnished ? 'Furnished' :'Not Furnished'
                         }</li>
                 </ul>
-
+                
+                {!contactLandlord && listing?.userRef !== auth.currentUser?.uid && (
+                    <div className="mt-6">
+                    <button onClick={()=>setContactLandlord(true)} className='py-3 px-7 text-white font-medium text-sm uppercase rounded shadow-md  hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg w-full text-center transition duration-150 ease-in-out bg-blue-600'>Contact Landlord</button>
+                </div>)
+            }
+            {
+                contactLandlord && (
+                    <ContactForm userRef={listing?.userRef} listing={listing}/>
+                )
+            }
             </div>
             {/* <div className="bg-pink-400 w-full h-[200px]"></div> */}
         </div>
