@@ -12,7 +12,7 @@ function ListingItem({id,data,onDelete,onEdit}) {
   // const time = Date.parse('23 mar 2023 10:41:19')
   // console.log(time);
   // console.log(data);
-  const {timestamp,address,imgUrls,regularprice,discountedprice,bathrooms,bedrooms,name,type,offer,userRef} = data
+  const {address,imgUrls,regularprice,discountedprice,bathrooms,bedrooms,name,type,offer,userRef} = data
   // console.log(timestamp.seconds*1000);
   // const mydate = new Date();
   // console.log(mydate);

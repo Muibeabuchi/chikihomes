@@ -13,7 +13,7 @@ function useAuth() {
     useEffect(()=>{
         
       const unsuscribe =  onAuthStateChanged(auth,data =>{
-            console.log('this is the' + data);
+            // console.log('this is the' + data);
             // setUserData(data.uid)
             if(data){
                 setUserData(data)
@@ -22,10 +22,10 @@ function useAuth() {
                 setUserData(null)
             }
             setCheckingStatus(false)
-            console.log(checkingStatus);
+            // console.log(checkingStatus);
 
 
-            console.log(userData);
+            // console.log(userData);
 
             // const data = await setUserData(data)
  
@@ -43,8 +43,8 @@ function useAuth() {
     },[])
 
 
-    console.log(userData);
-    console.log(checkingStatus);
+    // console.log(userData);
+    // console.log(checkingStatus);
 
     return {userData,checkingStatus};
 }

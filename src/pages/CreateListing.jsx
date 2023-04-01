@@ -238,7 +238,7 @@ function CreateListing() {
                     {
                       formData.type == 'rent' && (
                         <div className="">
-                          <p className='text-md w-full '>$ / Month</p>
+                          <p className='text-md w-full '>GH₵ / Month</p>
                         </div>
                       )
                     }

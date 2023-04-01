@@ -140,7 +140,7 @@ function EditListing() {
     console.log(docRef);
     setIsLoading(false);
     toast.success('Listing Edited')
-    navigate(`/categories/${formDataCopy.type}/${docRef.id}`)
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`)
   }
 
   useEffect(()=>{
@@ -279,7 +279,7 @@ function EditListing() {
                     {
                       formData.type == 'rent' && (
                         <div className="">
-                          <p className='text-md w-full '>$ / Month</p>
+                          <p className='text-md w-full '>GH₵ / Month</p>
                         </div>
                       )
                     }

@@ -13,6 +13,14 @@
 body{
     @apply bg-color1
 }
+
+html::-webkit-scrollbar{
+    display: none;
+}
+
+html{
+    scrollbar-width: none;
+}
 /* #fff3e6 */
 /* #dabcd3 */
 /* #d9d1c3 */
