@@ -7,6 +7,7 @@ import SignInPage from "./SignInPage";
 import CreateListing from './CreateListing';
 import EditListing from './EditListing';
 import Listing from './Listing';
+import Category from './Category';
 
 
 export {
@@ -19,4 +20,5 @@ export {
     CreateListing,
     EditListing,
     Listing,
+    Category,
 }

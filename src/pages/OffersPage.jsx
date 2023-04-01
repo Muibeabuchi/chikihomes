@@ -16,7 +16,6 @@ function OffersPage() {
   const [isLoading,setIsLoading] = useState(true);
   
   async function getOffers(){
-    const moreListingsQuery  = query(colRef,where('offer','==',true),orderBy('timestamp','desc'),startAfter(lastFetchedListing),limit(4));
     
     try {
       const Snapshot = await getDocs(offersQuery);
@@ -47,6 +46,7 @@ function OffersPage() {
 
 
   async function onFetchMoreListings(){
+    const moreListingsQuery  = query(colRef,where('offer','==',true),orderBy('timestamp','desc'),startAfter(lastFetchedListing),limit(4));
     
     try {
       const Snapshot = await getDocs(moreListingsQuery);
