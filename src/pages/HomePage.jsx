@@ -4,10 +4,11 @@ import { db } from "../firebase.config";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ListingItem from "../components/UI/ListingItem";
+import Spinner from "../components/UI/Spinner";
 
 function HomePage() {
 
-  const [loading,setLoading] = useState(false);
+  const [loading,setLoading] = useState(true);
   const [offerListings,setOfferListings] = useState([]);
   const [saleListings,setSaleListings] = useState([]);
   const [rentListings,setRentListings] = useState([]);
@@ -34,10 +35,12 @@ function HomePage() {
         }else if(queryState == 'rent'){
           setRentListings(listings)
         }
+        setLoading(false)
         // console.log(listings);
       }
       
     } catch (error) {
+      setLoading(false)
       // console.log(error.message);
     }
   }
@@ -54,6 +57,8 @@ function HomePage() {
       <p  className="text-gray-600 text-center my-6 text-sm lg:text-xl font-bold">Sorry, There are no Listings to be shown right now!</p>
     </div>
   } 
+
+  if(loading) return <Spinner />
 
   // console.log(rentListings);
   // console.log(saleListings);
