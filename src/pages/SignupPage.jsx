@@ -28,7 +28,7 @@ function SignupPage() {
       ...prevState,
       [e.target.name]:e.target.value
     })) 
-    console.log(formData);
+    // console.log(formData);
   }
   
   const handleSubmit = async (e)=>{
@@ -57,7 +57,7 @@ function SignupPage() {
           password:''
         })
       }
-      console.log(user);
+      // console.log(user);
       toast.success('Sign up was successful',{
         autoClose:5000
       })

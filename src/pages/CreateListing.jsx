@@ -80,13 +80,13 @@ function CreateListing() {
     // Observe state change events such as progress, pause, and resume
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
+    // console.log('Upload is ' + progress + '% done');
     switch (snapshot.state) {
       case 'paused':
-        console.log('Upload is paused');
+        // console.log('Upload is paused');
         break;
       case 'running':
-        console.log('Upload is running');
+        // console.log('Upload is running');
         break;
     }
   }, 
@@ -99,9 +99,9 @@ function CreateListing() {
     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       resolve(downloadURL);
-      console.log(downloadURL);
+      // console.log(downloadURL);
     });
-    console.log('upload complete');
+    // console.log('upload complete');
   }
 );
       })
@@ -110,7 +110,7 @@ function CreateListing() {
     const imgUrls = await Promise.all(
       [...formData.images].map(image => storeImage(image))).catch((err)=>{
         setIsLoading(false);
-        console.log(err.message);
+        // console.log(err.message);
         toast.error('Images not uploaded')
       }
     );
@@ -129,7 +129,7 @@ function CreateListing() {
     !formDataCopy.offer && delete formDataCopy.discountedprice
     const colRef = collection(db,'listings');
     const docRef = await addDoc(colRef,formDataCopy);
-    console.log(docRef);
+    // console.log(docRef);
     setIsLoading(false);
     toast.success('Listing Edited')
     navigate(`/categories/${formDataCopy.type}/${docRef.id}`)

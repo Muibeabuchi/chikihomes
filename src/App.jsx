@@ -2,12 +2,21 @@ import {Routes,Route } from "react-router-dom";
 import {Category, Listing , EditListing, CreateListing, HomePage, OffersPage, ProfilePage, SignInPage, SignupPage,ForgotPasswordPage} from "./pages";
 import ProtectedRoute from "./routers/ProtectedRoute";
 import Header from './components/Header/Header';
+import Modal from "./components/Modal/Modal";
+import { useModalContext } from "./context/ModalContext";
 
 
 function App() {
 
+  const {isOpen} = useModalContext()
+
   return <>
     <Header />
+    {
+      isOpen &&(
+        <Modal />
+        ) 
+    }
     <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/profile' element={

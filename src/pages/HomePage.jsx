@@ -38,7 +38,7 @@ function HomePage() {
       }
       
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 
@@ -51,7 +51,7 @@ function HomePage() {
   function  NoListing (){
     return <div className="max-w-6xl ">
 
-      <p  className="text-center my-6 text-xl font-bold">Sorry, There are no Listings to be shown right now!</p>
+      <p  className="text-gray-600 text-center my-6 text-sm lg:text-xl font-bold">Sorry, There are no Listings to be shown right now!</p>
     </div>
   } 
 
@@ -65,7 +65,7 @@ function HomePage() {
       <div className="max-w-6xl mx-auto  p-4 space-y-6">
         {offerListings && offerListings.length>0 && (
           <div className="m-2 mb-6">
-            <h2 className="px-3 text-3xl mt-6 font-semibold">Recent Offers</h2>
+            <h2 className="px-3 lg:text-3xl text-sm mt-6 font-semibold">Recent Offers</h2>
             <Link to='/offers' className="my-6">
               <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">Show more Offers</p>
             </Link>
@@ -79,7 +79,7 @@ function HomePage() {
         {
           offerListings && offerListings.length<1 && (
             <div className="m-2 mb-6">
-              <h2 className="px-3 text-3xl mt-6 font-semibold">Recent Offers</h2>
+              <h2 className="px-3 lg:text-3xl text-sm mt-6 font-semibold">Recent Offers</h2>
               <Link to='/offers' className="my-6">
                 <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">Show more Offers</p>
               </Link>
@@ -89,7 +89,7 @@ function HomePage() {
         }
         {saleListings && saleListings.length>0 && (
           <div className="m-2 mb-6">
-            <h2 className="px-3 text-3xl mt-6 font-semibold"> Places for <span className="text-secondary">Sale</span></h2>
+            <h2 className="px-3 text-sm lg:text-3xl mt-6 font-semibold"> Places for <span className="text-secondary">Sale</span></h2>
             <Link to='/category/sale' className="my-6">
               <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">Show more places for Sale</p>
             </Link>
@@ -103,7 +103,7 @@ function HomePage() {
                 {
           saleListings && saleListings.length<1 && (
             <div className="m-2 mb-6">
-            <h2 className="px-3 text-3xl mt-6 font-semibold"> Places for <span className="text-secondary">Sale</span></h2>
+            <h2 className="px-3 text-sm lg:text-3xl mt-6 font-semibold"> Places for <span className="text-secondary">Sale</span></h2>
               <Link to='/category/sale' className="my-6">
                 <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">Show more Places for Sale</p>
               </Link>
@@ -114,7 +114,7 @@ function HomePage() {
 
         {rentListings && rentListings.length>0 && (
           <div className="m-2 mb-6">
-            <h2 className="px-3 text-3xl mt-6 font-semibold">Places for <span className="text-secondary">Rent</span></h2>
+            <h2 className="px-3 text-sm lg:text-3xl mt-6 font-semibold">Places for <span className="text-secondary">Rent</span></h2>
             <Link to='/category/rent' className="my-6">
               <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">Show more places for Rent</p>
             </Link>
@@ -128,7 +128,7 @@ function HomePage() {
         {
         rentListings && rentListings.length<1 && (
             <div className="m-2 mb-6">
-            <h2 className="px-3 text-3xl mt-6 font-semibold"> Places for <span className="text-secondary">Sale</span></h2>
+            <h2 className="px-3 text-sm lg:text-3xl mt-6 font-semibold"> Places for <span className="text-secondary">Sale</span></h2>
               <Link to='/category/rent' className="my-6">
                 <p className="px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">Show more Places for Rent</p>
               </Link>

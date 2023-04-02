@@ -29,11 +29,11 @@ function SliderComponent() {
             });
           })
           setListings(listings);
-          console.log(listings);
+          // console.log(listings);
           setLoading(false);
          
         } catch (error) {
-          console.log(error.message);   
+          // console.log(error.message);   
           setLoading(false)
         }
         // console.log(listings);
@@ -71,7 +71,7 @@ function SliderComponent() {
               <div  key={id} onClick={()=> navigate(`/category/${data?.type}/${id}`)} className="relative">
                 <img src={data?.imgUrls[0]} alt="" className="w-full object-cover h-[300px]" />
                 <p className="text-[#f1faee] absolute left-1 top-3 font-medium max-w-[90%] bg-secondary shadow-lg opacity-[90%] p-2 rounded-br-3xl" >{data?.name}</p>
-                <p className="text-[#f1faee] absolute right-3 bottom-1 font-semibold max-w-[90%] bg-secondary shadow-lg opacity-[90%] p-3 rounded-tr-3xl" >$
+                <p className="text-[#f1faee] absolute right-3 bottom-1 font-semibold max-w-[90%] bg-secondary shadow-lg opacity-[90%] p-3 rounded-tr-3xl" > GH₵ 
                   {data?.discountedprice ?? data?.regularprice}
                   {!data?.discountedprice ?? data?.discountedprice}
                   {data?.type == 'rent' && ' /Month'}

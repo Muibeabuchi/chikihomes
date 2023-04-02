@@ -1,13 +1,22 @@
 import { Link, NavLink,useLocation } from 'react-router-dom';
 import Logo1 from '../../assets/icon1.png';
 import useAuth from '../../hooks/useAuth';
+import {useModalContext} from '../../context/ModalContext';
+import {AiOutlineClose} from 'react-icons/ai';
 
 function Header() {
+
+  const {setIsOpen,isOpen} = useModalContext();
   const {userData} = useAuth();
   const location = useLocation();
   // console.log(location);
   function pathMatchRoute(route){
     if(route==location.pathname) return true;
+  }
+
+  function toggleModal(){
+    setIsOpen(prev => !prev)
+    // console.log('modal toggled');
   }
 
   return (
@@ -30,8 +39,13 @@ function Header() {
             }
           </ul>
         </div>
-        <div className="md:hidden">
-          <p className='cursor-pointer'><i className="ri-menu-4-line text-[1.7rem]"></i></p>
+        <div className="md:hidden" onClick={toggleModal}>
+          <p className='cursor-pointer'>
+            {
+              isOpen ? (<AiOutlineClose className='text-[1.7rem]'/>):
+            (<i className="ri-menu-4-line text-[1.7rem]"></i>)
+            }
+            </p>
         </div>
       </header>
     </div>

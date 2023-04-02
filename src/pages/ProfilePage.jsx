@@ -26,8 +26,8 @@ function ProfilePage() {
   async function handleSubmit (e){
     e.preventDefault();
     e.stopPropagation();
-    console.log(auth?.currentUser.uid);
-    console.log(userData?.uid);
+    // console.log(auth?.currentUser.uid);
+    // console.log(userData?.uid);
     const docRef = doc(db,'users',auth?.currentUser.uid);
 
     try {
@@ -41,12 +41,12 @@ function ProfilePage() {
         await updateDoc(docRef,{
           name:name,
         })
-        console.log('firestore name updated');
+        // console.log('firestore name updated');
       }
       toast.success('profile details updated')
     } catch (error) {
       toast.error('could not update the profile details')
-      console.log(error);
+      // console.log(error);
     }
     
   }
@@ -92,7 +92,7 @@ function ProfilePage() {
         setLoading(false);
           
       } catch (error) {
-        console.log(error.message);        
+        // console.log(error.message);        
         setLoading(false);
       }
     }
@@ -101,7 +101,7 @@ function ProfilePage() {
   },[auth?.currentUser.uid])
 
   async function onDelete(id){
-    console.log('deleted');
+    // console.log('deleted');
     if(window.confirm('are you sure you want to delete?')){
 
       try {
@@ -112,14 +112,14 @@ function ProfilePage() {
         setListings(updatedListings)
         toast.success('Listing deleted');
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
       }
 
     }
   }
 
   function onEdit(id){
-    console.log('edited')
+    // console.log('edited')
     navigate(`/edit-listing/${id}`);    
 
   }

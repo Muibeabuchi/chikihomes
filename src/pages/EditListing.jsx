@@ -82,13 +82,13 @@ function EditListing() {
     // Observe state change events such as progress, pause, and resume
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
+    // console.log('Upload is ' + progress + '% done');
     switch (snapshot.state) {
       case 'paused':
-        console.log('Upload is paused');
+        // console.log('Upload is paused');
         break;
       case 'running':
-        console.log('Upload is running');
+        // console.log('Upload is running');
         break;
     }
   }, 
@@ -101,9 +101,9 @@ function EditListing() {
     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       resolve(downloadURL);
-      console.log(downloadURL);
+      // console.log(downloadURL);
     });
-    console.log('upload complete');
+    // console.log('upload complete');
   }
 );
       })
@@ -112,7 +112,7 @@ function EditListing() {
     const imgUrls = await Promise.all(
       [...formData.images].map(image => storeImage(image))).catch((err)=>{
         setIsLoading(false);
-        console.log(err.message);
+        // console.log(err.message);
         toast.error('Images not uploaded')
       }
     );
@@ -135,9 +135,9 @@ function EditListing() {
       const docSnap = await updateDoc(docRef,formDataCopy);
       
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
-    console.log(docRef);
+    // console.log(docRef);
     setIsLoading(false);
     toast.success('Listing Edited')
     navigate(`/category/${formDataCopy.type}/${docRef.id}`)
@@ -164,7 +164,7 @@ function EditListing() {
       }
     }
     fetchListing();
-    console.log(listing);
+    // console.log(listing);
   },[])
 
   useEffect(()=>{
@@ -174,7 +174,7 @@ function EditListing() {
     }
   },[listing?.userRef]);
 
-  console.log(listing?.userRef,auth?.currentUser?.uid);
+  // console.log(listing?.userRef,auth?.currentUser?.uid);
 
   if(isLoading){
     return <Spinner />

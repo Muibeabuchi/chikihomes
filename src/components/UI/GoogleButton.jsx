@@ -28,7 +28,7 @@ function GoogleButton() {
       toast.success('Sign up Successful')
         } catch (error) {
       toast.error('could not authorize with google');
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 

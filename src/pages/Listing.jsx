@@ -38,11 +38,11 @@ function Listing() {
                 // console.log(docSnap.data());
                 if(docSnap.exists()){
                     setListing(docSnap.data())
-                    console.log(listing);
+                    // console.log(listing);
                 }
                 setLoading(false);
             } catch (error) {
-                console.log(error.message);
+                // console.log(error.message);
                 setLoading(false);
             }
         }

@@ -6,9 +6,12 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import 'remixicon/fonts/remixicon.css';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalContextProvider from './context/ModalContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <ModalContextProvider>
+
     <Router>
       <ToastContainer
         position="top-right"
@@ -24,5 +27,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       />
       <App />
     </Router>
+    </ModalContextProvider>
   </React.StrictMode>,
 )

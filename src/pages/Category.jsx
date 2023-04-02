@@ -23,7 +23,7 @@ function Category() {
       const Snapshot = await getDocs(categoryQuery);
       const lastVisible = Snapshot.docs[Snapshot.docs.length - 1]
       setLastFetchedListing(lastVisible);
-      console.log(lastVisible);
+      // console.log(lastVisible);
       let listings =[];
       if(Snapshot){
         Snapshot.forEach(doc => {

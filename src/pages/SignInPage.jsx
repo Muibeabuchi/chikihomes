@@ -22,7 +22,7 @@ function SignInPage() {
       ...prevState,
       [e.target.name]:e.target.value
     })) 
-    console.log(formData);
+    // console.log(formData);
   }
   async function handleSignIn (e){
     e.preventDefault();
@@ -41,7 +41,7 @@ function SignInPage() {
       }else{
         toast.error('Wrong user credentials')
       }
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
   return (
